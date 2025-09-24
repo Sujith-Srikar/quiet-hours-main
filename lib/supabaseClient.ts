@@ -19,6 +19,13 @@ if (typeof window !== "undefined" && !supabaseAnonKey) {
   console.error("NEXT_PUBLIC_SUPABASE_ANON_KEY is not defined");
 }
 
+// Get the site URL for redirects
+export const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (typeof window !== "undefined"
+    ? window.location.origin
+    : "http://localhost:3000");
+
 // Create the client with the validated URLs - browser client with SSR support
 export const supabase = createBrowserClient(url, anonKey, {
   auth: {
